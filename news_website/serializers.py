@@ -1,8 +1,14 @@
 from rest_framework import serializers
-from .models import News
+from .models import ECards, TCards
 
 
-class NewsSerializer(serializers.ModelSerializer):
+class ECardsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = News
+        model = ECards
+        fields = '__all__'
+
+
+class TCardsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TCards
         fields = '__all__'

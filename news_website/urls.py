@@ -1,7 +1,13 @@
-from .views import NewsViewSet
+from .views import ECardsViewSet, TCardsViewSet
 from django.urls import path
 
-news_list = NewsViewSet.as_view({'get': 'list'})
+eCards_list = ECardsViewSet.as_view({'get': 'list', 'patch': 'partial_update'})
+tCards_list = TCardsViewSet.as_view({'get': 'list', 'patch': 'partial_update'})
+eCards_detail = ECardsViewSet.as_view({'get': 'retrieve', 'patch': 'partial_update'})
+
 urlpatterns = [
-    path('editorspicks/', news_list),
+    path('ecards/', eCards_list),
+    path('tcards/', tCards_list),
+    path('ecards/<int:pk>/', eCards_detail),
+
 ]

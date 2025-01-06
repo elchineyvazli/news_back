@@ -1,14 +1,26 @@
 from rest_framework.viewsets import ModelViewSet
-from .models import News
-from .serializers import NewsSerializer
+from .models import ECards, TCards
+from .serializers import ECardsSerializer, TCardsSerializer
 from rest_framework.renderers import JSONRenderer
 
 
-class NewsViewSet(ModelViewSet):
+class ECardsViewSet(ModelViewSet):
     renderer_classes = [JSONRenderer]
-    serializer_class = NewsSerializer
+    serializer_class = ECardsSerializer
 
     def get_queryset(self):
-        # id = self.request.GET.get
-        tag = self.request.GET.get('tag')
-        return News.objects.filter(tag=tag)
+        return ECards.objects.all().order_by('id')
+
+    def partial_update(self, request, *args, **kwargs):
+        return super().partial_update(request, *args, **kwargs)
+
+
+class TCardsViewSet(ModelViewSet):
+    renderer_classes = [JSONRenderer]
+    serializer_class = TCardsSerializer
+
+    def get_queryset(self):
+        return TCards.objects.all().order_by('id')
+
+    def partial_update(self, request, *args, **kwargs):
+        return super().partial_update(request, *args, **kwargs)
