@@ -49,3 +49,15 @@ class TCards(models.Model):
 
     def __str__(self):
         return self.t_title
+
+
+class Comments(models.Model):
+    id = models.AutoField(primary_key=True, null=False)
+    username = models.CharField(max_length=30, null=False, blank=False)
+    message = models.CharField(max_length=100, null=False, blank=False)
+
+    class Meta:
+        db_table = '"News"."Comments"'
+
+    def __str__(self):
+        return self.username
